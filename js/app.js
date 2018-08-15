@@ -50,6 +50,24 @@ var seattleCenter = new Store('Seattle Center', 11, 38, 3.7);
 var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
 var alki = new Store('Alki', 2, 16, 4.6);
 
+
+function makeHeaderRow(){
+    var trElement = document.createElement('tr');
+    var thElement = document.createElement('th');
+    thElement.textContent = 'Store Locations';
+    trElement.appendChild(thElement);
+    storeTableElement.appendChild(trElement);
+    for(var i = 0; i < hours.length; i++){
+        thElement = document.createElement('th');
+        thElement.textContent = hours[i];
+        trElement.appendChild(thElement);
+    }
+        thElement = document.createElement('th');
+        thElement.textContent = 'Location Total';
+        trElement.appendChild(thElement);
+}   
+makeHeaderRow();
+
 pikePlaceMarket.render();
 seaTac.render();
 seattleCenter.render();
