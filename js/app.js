@@ -77,12 +77,15 @@ seattleCenter.render();
 capitolHill.render();
 alki.render();
 
+var calcDailyStoresCookieSales = 0;
+    
 var calcTotalCookiePerHour = function(){
     for(var i = 0; i < hours.length; i++){
         var allLocationsTotalPerHour = 0;
         for(var j = 0; j < cookieStores.length; j++){
             allLocationsTotalPerHour += cookieStores[j].cookiesSoldPerHour[i];
-        } 
+        }
+        calcDailyStoresCookieSales += allLocationsTotalPerHour; 
         totalLocationCookies.push(allLocationsTotalPerHour)
     }
 
@@ -90,12 +93,20 @@ var calcTotalCookiePerHour = function(){
 function makeFooterRow(){
     var trElement = document.createElement('tr');
     var thElement = document.createElement('th');
-        thElement.textContent = 'Total';
+    thElement.textContent = 'Total';
     trElement.appendChild(thElement);
     calcTotalCookiePerHour();
-    var tdElement = document.createElement('td');
-    
+    for(var i = 0; i < totalLocationCookies.length; i++){
+        var tdElement = document.createElement('td');
+        tdElement.textContent = totalLocationCookies[i]
+        trElement.appendChild(tdElement);
+    }
+    var thElement = document.createElement('th');
+    thElement.textContent = calcDailyStoresCookieSales;
+    trElement.appendChild(thElement);
+    storeTableElement.appendChild(trElement);
 }
+makeFooterRow();
 
 var addLocationForm = document.getElementById('add-location-form');
 var addLocationFormFunction = function(event){
