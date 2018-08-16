@@ -16,6 +16,7 @@ function Store(name, minCustomersPerHour, maxCustomersPerHour, averageCookieSold
 }
 
 Store.prototype.calcCookiesPerHour = function(){
+    this.cookiesSoldPerHour = [];
     for(var i = 0; i < hours.length; i++){
         var randomNum = getRandomCustomerNumber(this.minCustomersPerHour,this.maxCustomersPerHour);
         var cookiesSoldThisHour = Math.ceil(randomNum * this.averageCookieSoldPerHour);
@@ -71,11 +72,13 @@ function makeHeaderRow(){
 }   
 makeHeaderRow();
 
-pikePlaceMarket.render();
-seaTac.render();
-seattleCenter.render();
-capitolHill.render();
-alki.render();
+
+function seattleStoreLocation(){
+    for(var i = 0; i < cookieStores.length; i++){
+        cookieStores[i].render();
+    }
+}
+seattleStoreLocation();
 
 var calcDailyStoresCookieSales = 0;
     
@@ -95,6 +98,7 @@ function makeFooterRow(){
     var thElement = document.createElement('th');
     thElement.textContent = 'Total';
     trElement.appendChild(thElement);
+    totalLocationCookies = [];
     calcTotalCookiePerHour();
     for(var i = 0; i < totalLocationCookies.length; i++){
         var tdElement = document.createElement('td');
@@ -121,7 +125,10 @@ var addLocationFormFunction = function(event){
     var averageCookieSoldPerHourInput = event.target.averageCookieSoldPerHour.value;
 
     var newStore = new Store(cookieLocationInput, minCustomersPerHourInput, maxCustomersPerHourInput, averageCookieSoldPerHourInput);
-    newStore.render();
+    storeTableElement.innerHTML = '';
+    makeHeaderRow();
+    seattleStoreLocation();
+    makeFooterRow();
 }
 addLocationForm.addEventListener('submit', addLocationFormFunction)
 function getRandomCustomerNumber(min, max){
