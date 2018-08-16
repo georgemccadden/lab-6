@@ -7,9 +7,29 @@
 </head>
 
 <body>
+<p>Your business is expanding by the minute! Enter the new location below :</p>
+  <form id="add-location-form">
+      <fieldset>
+          <legend>Location Submission Form</legend>
+
+          <label for="where">Where: </label>
+          <input name="where" type="text" size="15" />
+
+          <label for="minCustomerPerHour">Minimum Customers Per Hour: </label>
+          <input name="minCustomerPerHour" type="number" size="15" />
+
+          <label for="maxCustomerPerHour">Maximum Customers Per Hour: </label>
+          <input name="maxCustomerPerHour" type="number" size="15" />
+
+          <label for="averageCookieSoldPerHour">Average Cookies Sold Per Hour: </label>
+          <input name="averageCookieSoldPerHour" type="number" size="15" />
+
+          <button type="submit">Submit New Location</button>
+      </fieldset>
+  </form>  
   <table id="stores"></table>
 
-  <script src="app.js"></script>
+  <script src="./js/app.js"></script>
 </body>
 
 </html>
